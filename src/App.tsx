@@ -8,8 +8,6 @@ import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { bindMessageApi } from "./utils/feedback";
 import { decodeJwt, getTokenExpiration } from "./utils/jwt";
 
-import DemoSession from "./mock/DemoSession";
-
 const PrivateRoutes = lazy(() => import("./routes/PrivateRoutes"));
 const CardPage = lazy(() => import("./pages/public/CardPage"));
 
@@ -56,7 +54,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <FeedbackBinder />
-      <DemoSession />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/v/:id" element={<CardPage />} />
