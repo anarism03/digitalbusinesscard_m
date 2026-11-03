@@ -1,0 +1,106 @@
+.profile-link-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-link-toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.profile-link-toggle-arrow {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 12px;
+  transition: transform 240ms ease;
+}
+
+.profile-link-toggle-arrow[data-open] {
+  transform: rotate(90deg);
+}
+
+.profile-link-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.profile-link-details[data-open] {
+  grid-template-rows: 1fr;
+}
+
+.profile-link-details-inner {
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 180ms ease,
+    visibility 0s linear 240ms;
+}
+
+.profile-link-details[data-open] .profile-link-details-inner {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 180ms ease;
+}
+
+.profile-link-details-content {
+  min-width: 0;
+  margin: 0;
+  padding: 12px 0 0;
+  border: 0;
+}
+
+.profile-link-field {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-link-toggle-arrow,
+  .profile-link-details,
+  .profile-link-details-inner,
+  .profile-link-details[data-open] .profile-link-details-inner {
+    transition: none;
+  }
+}
+
+.profile-link-field:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.profile-link-field[data-invalid] {
+  border-color: var(--color-danger);
+}
+
+.profile-link-field[data-invalid]:focus-within {
+  box-shadow: 0 0 0 3px var(--color-danger-soft);
+}

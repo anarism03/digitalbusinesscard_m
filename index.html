@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (() => {
+        let mode = "system";
+        try {
+          const saved = JSON.parse(
+            localStorage.getItem("dbc-appearance-v1") || "{}",
+          );
+          if (["light", "dark", "system"].includes(saved?.mode))
+            mode = saved.mode;
+        } catch {}
+        const dark =
+          mode === "dark" ||
+          (mode === "system" &&
+            matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        document.documentElement.classList.toggle("dark", dark);
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/layered-cards-logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Business Card</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

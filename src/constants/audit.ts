@@ -1,0 +1,83 @@
+export const AUDIT_ACTION_RULES: {
+  match: string;
+  label: string;
+  color: string;
+}[] = [
+  { match: "DEACTIV", label: "Deaktiv edildi", color: "error" },
+  { match: "ACTIVAT", label: "Aktivləşdirildi", color: "success" },
+  { match: "CREAT", label: "Yaradıldı", color: "success" },
+  { match: "ADD", label: "Əlavə edildi", color: "success" },
+  { match: "DELET", label: "Silindi", color: "error" },
+  { match: "REMOV", label: "Silindi", color: "error" },
+  { match: "LOGIN", label: "Giriş etdi", color: "geekblue" },
+  { match: "IMPORT", label: "İdxal etdi", color: "cyan" },
+  { match: "EXPORT", label: "İxrac etdi", color: "geekblue" },
+  { match: "UPDAT", label: "Yenilədi", color: "blue" },
+  { match: "EDIT", label: "Yenilədi", color: "blue" },
+  { match: "CHANG", label: "Yenilədi", color: "blue" },
+  { match: "MODIF", label: "Yenilədi", color: "blue" },
+];
+
+export const AUDIT_FIELD_LABELS: Record<string, string> = {
+  firstname: "Ad",
+  lastname: "Soyad",
+  middlename: "Ata adı",
+  jobtitle: "Vəzifə",
+  phone1: "İş telefonu",
+  phone2: "Şəxsi telefon",
+  whatsappphone: "WhatsApp",
+  extensionnumber: "Daxili nömrə",
+  additionalinfo: "Əlavə məlumat",
+  email: "E-poçt",
+  isactive: "Status",
+  isdeleted: "Vəziyyət",
+  canedit: "Redaktə icazəsi",
+  caneditprofile: "Redaktə icazəsi",
+  name: "Ad",
+  address: "Ünvan",
+  contact: "Əlaqə",
+  voen: "VÖEN",
+  userlimit: "İstifadəçi limiti",
+  employeelimit: "Əməkdaş limiti",
+  logourl: "Loqo",
+  photourl: "Foto",
+  role: "Rol",
+  linkedinurl: "LinkedIn",
+  facebookurl: "Facebook",
+  instagramurl: "Instagram",
+  contacttype: "Növ",
+  label: "Etiket",
+  value: "Dəyər",
+  platformname: "Platform",
+  profileurl: "Link",
+  iconurl: "İkon",
+};
+
+export const AUDIT_CONTACT_CARD_LABELS: Record<string, string> = {
+  name: "Kontakt kartı adı",
+  buttonlabel: "Kontakt kartı düymə adı",
+  website: "Kontakt kartı vebsaytı",
+  enabled: "Kontakt kartı aktivliyi",
+};
+
+export const AUDIT_IGNORED_KEYS = new Set([
+  "id",
+  "companyid",
+  "userid",
+  "createdat",
+  "updatedat",
+  "createdby",
+  "updatedby",
+  "passwordhash",
+  "password",
+  "securitystamp",
+  "concurrencystamp",
+  "normalizedemail",
+  "normalizedusername",
+  "rowversion",
+  "isfirstlogin",
+  "passwordexpirydate",
+  "qrcodedata",
+  "nfcid",
+  "displayorder",
+]);
