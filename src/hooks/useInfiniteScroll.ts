@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { PageResult } from "../types";
+import { useCloudRefresh } from "./useCloudRefresh";
 
 export function useScrollSentinel(hasMore: boolean, onReveal: () => void) {
   const sentinelRef = useRef<HTMLDivElement | null>(null);
@@ -96,6 +97,7 @@ export function useInfiniteScroll<T>(
     () => loadPage(pageRef.current || 1, true),
     [loadPage],
   );
+  useCloudRefresh(refetch);
 
   return {
     items,

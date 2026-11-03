@@ -17,7 +17,7 @@ import {
   toRole,
 } from "../utils/normalize";
 
-export const AUTH_STORAGE_KEY = "setclapp-demo-auth-v1";
+export const AUTH_STORAGE_KEY = "setclapp-cloud-auth-v1";
 
 function optionalString(value: unknown): string | undefined {
   return typeof value === "string" && value ? value : undefined;

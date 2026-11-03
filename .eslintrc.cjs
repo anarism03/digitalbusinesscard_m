@@ -11,5 +11,15 @@ module.exports = {
   ],
   ignorePatterns: ["dist/", "build/", "node_modules/"],
   rules: { "no-empty": ["error", { allowEmptyCatch: true }] },
-  overrides: [{ files: ["vite.config.ts"], env: { node: true } }],
+  overrides: [
+    {
+      files: [
+        "vite.config.ts",
+        "server/**/*.ts",
+        "api/**/*.ts",
+        "tests/**/*.ts",
+      ],
+      env: { node: true },
+    },
+  ],
 };

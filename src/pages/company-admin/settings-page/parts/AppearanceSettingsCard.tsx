@@ -7,16 +7,25 @@ import {
   SkinOutlined,
   SunOutlined,
 } from "@ant-design/icons";
-import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import { useAppearance } from "../../../../providers/AppearanceContext";
 import { useAppSelector } from "../../../../store/hooks";
 import {
   BRAND_PRESETS,
   DEFAULT_BRAND_COLOR,
   normalizeHex,
-  resetCompanyBrand,
   setCompanyBrand,
 } from "../../../../utils/appearance";
+import { apiClient } from "../../../../services/axios/axiosInstance";
+import { getApiErrorMessage } from "../../../../utils/apiError";
+import { message } from "../../../../utils/feedback";
 
 const THEME_OPTIONS = [
   { value: "light", label: "Açıq", Icon: SunOutlined },
@@ -36,6 +45,16 @@ export default function AppearanceSettingsCard() {
   const selectedPreset = BRAND_PRESETS.find(
     (preset) => preset.color === brandColor,
   );
+  const saveBrand = useCallback(
+    (color: string) => {
+      if (!companyId || color.toLowerCase() === brandColor) return;
+      void apiClient
+        .put(`/appearance/${encodeURIComponent(companyId)}`, { color })
+        .then(() => setCompanyBrand(companyId, color))
+        .catch((error) => message.error(getApiErrorMessage(error)));
+    },
+    [companyId, brandColor],
+  );
 
   useEffect(() => {
     setDraft(brandColor.toUpperCase());
@@ -45,16 +64,16 @@ export default function AppearanceSettingsCard() {
   useEffect(() => {
     const input = colorInput.current;
     if (!input) return;
-    const commitColor = () => setCompanyBrand(companyId, input.value);
+    const commitColor = () => saveBrand(input.value);
     input.addEventListener("change", commitColor);
     return () => input.removeEventListener("change", commitColor);
-  }, [companyId]);
+  }, [saveBrand]);
 
   const applyCustomColor = () => {
     const color = normalizeHex(draft);
     setInvalid(!color);
     if (color) {
-      setCompanyBrand(companyId, color);
+      saveBrand(color);
       setDraft(color.toUpperCase());
     }
   };
@@ -146,7 +165,7 @@ export default function AppearanceSettingsCard() {
                       name={`${fieldId}-brand`}
                       value={color}
                       checked={brandColor === color}
-                      onChange={() => setCompanyBrand(companyId, color)}
+                      onChange={() => saveBrand(color)}
                     />
                     <span
                       className="appearance-swatch-color flex size-8 items-center justify-center rounded-full"
@@ -198,9 +217,7 @@ export default function AppearanceSettingsCard() {
                         setDraft(event.target.value.toUpperCase());
                         setInvalid(false);
                       }}
-                      onBlur={(event) =>
-                        setCompanyBrand(companyId, event.currentTarget.value)
-                      }
+                      onBlur={(event) => saveBrand(event.currentTarget.value)}
                     />
                   </label>
                   <input
@@ -233,7 +250,7 @@ export default function AppearanceSettingsCard() {
                     className="appearance-reset"
                     disabled={brandColor === DEFAULT_BRAND_COLOR}
                     onClick={() => {
-                      resetCompanyBrand(companyId);
+                      saveBrand(DEFAULT_BRAND_COLOR);
                       setDraft(DEFAULT_BRAND_COLOR.toUpperCase());
                       setInvalid(false);
                     }}

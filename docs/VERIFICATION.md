@@ -1,4 +1,14 @@
-# Yoxlama nəticələri — 3 noyabr 2026
+# Ortaq Blob inteqrasiyası — 3 noyabr 2026
+
+- `npm test`: 4 inteqrasiya testi uğurludur. Ayrı API instansiyaları ortaq mətni, şəkli, ləqəbi və şirkət sazlamalarını görür.
+- ETag konflikti və təkrar əməliyyat, paralel ilk yaradılma, saxta token, başqa şirkətə giriş və yaddaş xidməti xətası yoxlanıb.
+- Şifrələr hash kimi saxlanır; şifrə dəyişikliyi əvvəlki sessiyanı etibarsız edir.
+- XLSX şablonu və multipart idxalı serverdə işləyir.
+- Chromium-da 390px mobil sessiyada profil adı və şəkil faylı dəyişdirilib, saxlanıb. Girişsiz ayrıca PC brauzer kontekstində dəyişmiş ad və dekod olunan şəkil təsdiqlənib.
+- `npm run lint`, frontend/server TypeScript yoxlamaları və production build uğurludur.
+- Canlı Blob bağlantısı deploydan sonra `/api/health` vasitəsilə yoxlanmalıdır. Bu bölmədəki iki brauzer yoxlaması təcrid olunmuş lokal test sürücüsü ilə aparılıb.
+
+## Əvvəlki lokal demo yoxlamaları
 
 Yerli Windows mühitində Node.js 24.16.0 və Chromium ilə yoxlanıb. Vercel-ə faktiki deploy edilməyib; deploy üçün konfiqurasiya hazırlanıb.
 

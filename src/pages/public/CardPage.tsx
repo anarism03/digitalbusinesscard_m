@@ -22,6 +22,7 @@ import type {
 } from "../../types/pages/public";
 import { mapPublicCard } from "../../utils/mappers";
 import { nicknameSchema } from "../../validators/nickname";
+import { useCloudRefresh } from "../../hooks/useCloudRefresh";
 
 const s = strings.publicCard;
 
@@ -102,6 +103,8 @@ export default function CardPage() {
   const [employee, setEmployee] = useState<Employee | undefined>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<unknown>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
+  useCloudRefresh(() => setRefreshKey((key) => key + 1));
 
   useLayoutEffect(() => {
     setPublicCompanyId(employee?.companyId ?? null);
@@ -154,7 +157,7 @@ export default function CardPage() {
     return () => {
       cancelled = true;
     };
-  }, [id, source, navigate, search, hash]);
+  }, [id, source, navigate, search, hash, refreshKey]);
 
   useEffect(() => {
     if (!employee) return;

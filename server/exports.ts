@@ -1,9 +1,11 @@
-import type { DemoAccount, DemoDatabase } from "./seed";
-import { DEMO_PASSWORD } from "./seed";
-import { buildVcfText } from "../utils/vcard";
-import { buildViewLinkRows } from "../utils/cardLinkRows";
+import type { DemoAccount, DemoDatabase } from "../src/mock/seed";
+import { DEMO_PASSWORD } from "../src/mock/seed";
+import { buildVcfText } from "../src/utils/vcard";
+import { buildViewLinkRows } from "../src/utils/cardLinkRows";
 
 interface ExportContext {
+  origin: string;
+  assetData: (path?: string) => Promise<string>;
   path: string;
   parts: string[];
   raw: unknown;
@@ -41,20 +43,11 @@ const escape = (value: unknown) =>
         c
       ]!,
   );
-async function assetData(path?: string) {
-  if (!path) return "";
-  if (path.startsWith("data:image/")) return path;
-  if (!path.startsWith("/demo/")) return "";
-  const response = await fetch(path);
-  if (!response.ok) return "";
-  const blob = await response.blob();
-  return await new Promise<string>((resolve) => {
-    const r = new FileReader();
-    r.onload = () => resolve(String(r.result));
-    r.readAsDataURL(blob);
-  });
-}
-async function htmlCards(employees: DemoAccount[], db: DemoDatabase) {
+async function htmlCards(
+  employees: DemoAccount[],
+  db: DemoDatabase,
+  assetData: ExportContext["assetData"],
+) {
   const cards = await Promise.all(
     employees.map(async (e) => {
       const c = db.companies.find((c) => c.id === e.companyId);
@@ -82,7 +75,18 @@ async function htmlCards(employees: DemoAccount[], db: DemoDatabase) {
 export async function handleExportImport(
   ctx: ExportContext,
 ): Promise<Blob | object> {
-  const { path, parts, raw, db, current, requireCompany, fail, audit } = ctx;
+  const {
+    path,
+    parts,
+    raw,
+    db,
+    current,
+    requireCompany,
+    fail,
+    audit,
+    assetData,
+    origin,
+  } = ctx;
   if (path.includes("/vcf/")) {
     const e =
       db.employees.find((e) => e.id === parts[2]) ??
@@ -114,7 +118,7 @@ export async function handleExportImport(
       selected = db.employees.filter((e) => e.companyId === parts[2]);
     }
   }
-  if (path.includes("/html/")) return htmlCards(selected, db);
+  if (path.includes("/html/")) return htmlCards(selected, db, assetData);
   const { default: ExcelJS } = await import("exceljs");
   const workbook = new ExcelJS.Workbook();
   workbook.creator = "SetClapp Demo";
@@ -223,7 +227,7 @@ export async function handleExportImport(
         role: e.role === 1 ? "Şirkət admini" : "Əməkdaş",
         isActive: e.isActive ? "Aktiv" : "Arxiv",
         canEdit: e.canEdit ? "Bəli" : "Xeyr",
-        profileUrl: `${window.location.origin}/v/${encodeURIComponent(e.nickname || e.id)}`,
+        profileUrl: `${origin}/v/${encodeURIComponent(e.nickname || e.id)}`,
         socialAccounts: JSON.stringify(e.socialAccounts || []),
         contactInfos: JSON.stringify(e.contactInfos || []),
       }),

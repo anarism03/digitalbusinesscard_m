@@ -1,11 +1,9 @@
 import axios from "axios";
-import { mockAdapter } from "../mock/adapter";
 import { API_BASE_URL, unwrapResponseData } from "./axios/axiosInstance";
 
 const publicClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 15000,
-  adapter: mockAdapter,
+  timeout: 45000,
 });
 
 publicClient.interceptors.response.use(unwrapResponseData);

@@ -16,6 +16,7 @@ import {
   registerQuery,
 } from "../utils/queryCache";
 import { createQueryState, updateQueryState } from "../utils/queryState";
+import { useCloudRefresh } from "./useCloudRefresh";
 
 export const invalidate = invalidateQuery;
 
@@ -100,6 +101,7 @@ export function useApiQuery<T>(
   }, [enabled, key, load, scope]);
 
   const refetch = useCallback(() => load(), [load]);
+  useCloudRefresh(refetch);
   const cachedData = enabled ? getQueryData<T>(scope) : undefined;
   const visible: QueryState<T> =
     enabled && state.scope === scope

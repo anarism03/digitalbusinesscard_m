@@ -1,5 +1,4 @@
 import axios, { type AxiosResponse } from "axios";
-import { mockAdapter } from "../../mock/adapter";
 import { API_BASE_URL } from "../../constants/apiUrl";
 import { isOldPasswordError } from "../../utils/apiError";
 import { decodeJwt } from "../../utils/jwt";
@@ -14,8 +13,7 @@ export function unwrapResponseData(response: AxiosResponse) {
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 15000,
-  adapter: mockAdapter,
+  timeout: 45000,
 });
 
 apiClient.interceptors.request.use((config) => {

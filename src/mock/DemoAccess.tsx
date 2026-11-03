@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Alert, Button, Popconfirm, Select, Space } from "antd";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +7,8 @@ import { setCredentials } from "../store/authSlice";
 import { useAppDispatch } from "../store/hooks";
 import { decodeJwt } from "../utils/jwt";
 import { getApiErrorMessage } from "../utils/apiError";
-import { readDatabase, resetDemo } from "./database";
+import { apiClient } from "../services/axios/axiosInstance";
+import { AUTH_STORAGE_KEY } from "../store/authSlice";
 import { companyId, DEMO_PASSWORD } from "./seed";
 import "./DemoAccess.css";
 
@@ -18,8 +19,38 @@ export default function DemoAccess() {
   const contentId = useId();
   const [pending, setPending] = useState<string>();
   const [error, setError] = useState<string>();
-  const [db] = useState(readDatabase);
+  const [db, setDb] = useState<{
+    companies: { id: string; name: string; voen: string; isActive: boolean }[];
+    employees: {
+      companyId: string;
+      email: string;
+      role: number;
+      isActive: boolean;
+    }[];
+  }>({ companies: [], employees: [] });
   const [selectedCompany, setSelectedCompany] = useState(companyId(0));
+  useEffect(() => {
+    if (!isOpen) return;
+    let cancelled = false;
+    setError(undefined);
+    apiClient
+      .get<typeof db>("/demo/accounts")
+      .then((data) => {
+        if (cancelled) return;
+        setDb(data);
+        setSelectedCompany((id) =>
+          data.companies.some((c) => c.id === id && c.isActive)
+            ? id
+            : data.companies.find((c) => c.isActive)?.id || "",
+        );
+      })
+      .catch((error) => {
+        if (!cancelled) setError(getApiErrorMessage(error));
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [isOpen]);
   const company = db.companies.find((c) => c.id === selectedCompany);
   const admin = db.employees.find(
     (e) => e.companyId === selectedCompany && e.role === 1 && e.isActive,
@@ -81,10 +112,10 @@ export default function DemoAccess() {
                 lineHeight: 1.6,
               }}
             >
-              6 şirkət · 48 profil · API-siz demo
+              Ortaq demo · Vercel Blob
               <br />
-              Şəxslər və şirkətlər uydurmadır. Dəyişikliklər bu brauzerdə
-              saxlanır.
+              Şəxslər və şirkətlər uydurmadır. Dəyişikliklər bütün cihazlarda
+              paylaşılır.
             </p>
             <Select
               aria-label="Demo şirkətini seçin"
@@ -125,10 +156,13 @@ export default function DemoAccess() {
             >
               <Link to="/v/aysel-mammadova">Nümunə vizitkarta bax ↗</Link>
               <Popconfirm
-                title="Demo məlumatları sıfırlansın?"
-                description="Bu brauzerdə etdiyiniz demo dəyişiklikləri silinəcək."
-                onConfirm={resetDemo}
-                okText="Sıfırla"
+                title="Bu cihazdakı giriş təmizlənsin?"
+                description="Ortaq məlumatlar və digər cihazlar dəyişməyəcək."
+                onConfirm={() => {
+                  localStorage.removeItem(AUTH_STORAGE_KEY);
+                  window.location.assign("/login");
+                }}
+                okText="Təmizlə"
                 cancelText="Ləğv et"
               >
                 <button
@@ -141,7 +175,7 @@ export default function DemoAccess() {
                     padding: 0,
                   }}
                 >
-                  Sıfırla
+                  Girişi təmizlə
                 </button>
               </Popconfirm>
             </div>
