@@ -1,5 +1,5 @@
-import type { Role } from "../types";
-import { strings } from "./strings";
+import type { Role } from "../types/index.js";
+import { strings } from "./strings.js";
 
 export const ROLE_MAP: Record<number, Role> = {
   0: "SUPER_ADMIN",

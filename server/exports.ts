@@ -1,7 +1,7 @@
-import type { DemoAccount, DemoDatabase } from "../src/mock/seed";
-import { DEMO_PASSWORD } from "../src/mock/seed";
-import { buildVcfText } from "../src/utils/vcard";
-import { buildViewLinkRows } from "../src/utils/cardLinkRows";
+import type { DemoAccount, DemoDatabase } from "../src/mock/seed.js";
+import { DEMO_PASSWORD } from "../src/mock/seed.js";
+import { buildVcfText } from "../src/utils/vcard.js";
+import { buildViewLinkRows } from "../src/utils/cardLinkRows.js";
 
 interface ExportContext {
   origin: string;

@@ -1,5 +1,9 @@
-import type { ContactInfo, CoreLinkKey, SocialAccount } from "../types";
-import { isContactCardField } from "./contactCardFields";
+import type {
+  ContactInfo,
+  CoreLinkKey,
+  SocialAccount,
+} from "../types/index.js";
+import { isContactCardField } from "./contactCardFields.js";
 
 const DISABLED_LINKS_LABEL_PREFIX = "__setclapp_disabled_links__:";
 const GOOGLE_MAPS_HEADLINE_PREFIX = "__setclapp_googlemaps_headline__:";

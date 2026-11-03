@@ -1,7 +1,7 @@
-import { strings } from "../constants/strings";
-import type { ApiErrorShape } from "../types/api";
-import { message } from "./feedback";
-import { asRecord } from "./normalize";
+import { strings } from "../constants/strings.js";
+import type { ApiErrorShape } from "../types/api.js";
+import { message } from "./feedback.js";
+import { asRecord } from "./normalize.js";
 
 const ERROR_CODE_MAP: Record<string, string> = {
   INVALID_CREDENTIALS: strings.auth.loginError,

@@ -1,17 +1,17 @@
-import { LABELED_PHONE_PLATFORMS } from "../constants/vcard";
-import { fetchAssetBlob } from "./asset";
+import { LABELED_PHONE_PLATFORMS } from "../constants/vcard.js";
+import { fetchAssetBlob } from "./asset.js";
 import type {
   Company,
   ContactCardFields,
   ContactCardVcfOverrides,
   Employee,
-} from "../types";
-import { buildViewLinkRows } from "./cardLinkRows";
-import { hasContactCardFields } from "./contactCardFields";
-import { rasterizeDataUrlToJpeg, readAsDataUrl } from "./file";
-import { getDisabledLinkKeys } from "./linkVisibility";
-import { digitsOnly } from "./text";
-import { isImageDataUrl, resolveAssetUrlCandidates } from "./url";
+} from "../types/index.js";
+import { buildViewLinkRows } from "./cardLinkRows.js";
+import { hasContactCardFields } from "./contactCardFields.js";
+import { rasterizeDataUrlToJpeg, readAsDataUrl } from "./file.js";
+import { getDisabledLinkKeys } from "./linkVisibility.js";
+import { digitsOnly } from "./text.js";
+import { isImageDataUrl, resolveAssetUrlCandidates } from "./url.js";
 
 function escapeVcf(value?: string): string {
   return (value ?? "")

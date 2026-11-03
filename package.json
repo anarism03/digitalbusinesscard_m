@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && tsc -p tsconfig.server.json && vite build",
+    "build": "tsc && tsc -p tsconfig.server.json && npm run check:server && vite build",
+    "check:server": "node scripts/check-server-esm.mjs",
     "test": "tsx --test tests/*.test.ts",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx",

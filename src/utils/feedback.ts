@@ -1,5 +1,5 @@
 import type { MessageInstance } from "antd/es/message/interface";
-import { strings } from "../constants/strings";
+import { strings } from "../constants/strings.js";
 
 let api: MessageInstance | null = null;
 

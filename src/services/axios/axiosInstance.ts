@@ -1,9 +1,9 @@
 import axios, { type AxiosResponse } from "axios";
-import { API_BASE_URL } from "../../constants/apiUrl";
-import { isOldPasswordError } from "../../utils/apiError";
-import { decodeJwt } from "../../utils/jwt";
-import { isTrustedAssetUrl } from "../../utils/url";
-import { getStore } from "./storeAccessor";
+import { API_BASE_URL } from "../../constants/apiUrl.js";
+import { isOldPasswordError } from "../../utils/apiError.js";
+import { decodeJwt } from "../../utils/jwt.js";
+import { isTrustedAssetUrl } from "../../utils/url.js";
+import { getStore } from "./storeAccessor.js";
 
 export { API_BASE_URL };
 

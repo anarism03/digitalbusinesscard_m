@@ -1,14 +1,14 @@
 import { createHash, randomBytes } from "node:crypto";
 import { AxiosError, AxiosHeaders } from "axios";
-import { createSeed, type DemoDatabase } from "../src/mock/seed";
-import { createDataAdapter } from "./engine";
+import { createSeed, type DemoDatabase } from "../src/mock/seed.js";
+import { createDataAdapter } from "./engine.js";
 import {
   createAuth,
   hashPassword,
   protectPasswords,
   verifyPassword,
-} from "./auth";
-import { StorageConflict, type ObjectStore } from "./storage";
+} from "./auth.js";
+import { StorageConflict, type ObjectStore } from "./storage.js";
 
 const DATABASE_PATH = "state/database-v1.json";
 const MAX_REQUEST_BYTES = 4_000_000;

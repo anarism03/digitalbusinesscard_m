@@ -1,11 +1,11 @@
-import { FALLBACK_LINK_META, LINK_TYPE_META } from "../constants/linkTypes";
+import { FALLBACK_LINK_META, LINK_TYPE_META } from "../constants/linkTypes.js";
 import type {
   ContactInfo,
   CoreLinkKey,
   LinkType,
   LinkTypeMeta,
   SocialAccount,
-} from "../types";
+} from "../types/index.js";
 const TINTS: Partial<Record<CoreLinkKey | LinkType, string>> = {
   phone1: "#16a34a",
   phone2: "#16a34a",

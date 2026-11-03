@@ -4,7 +4,7 @@ import {
   scryptSync,
   timingSafeEqual,
 } from "node:crypto";
-import type { DemoAccount, DemoDatabase } from "../src/mock/seed";
+import type { DemoAccount, DemoDatabase } from "../src/mock/seed.js";
 
 export function hashPassword(plain: string): string {
   const salt = randomBytes(16).toString("hex");

@@ -1,5 +1,5 @@
-import { API_BASE_URL, API_TARGET_URL } from "../constants/apiUrl";
-import { digitsOnly } from "./text";
+import { API_BASE_URL, API_TARGET_URL } from "../constants/apiUrl.js";
+import { digitsOnly } from "./text.js";
 
 export function normalizeUrl(value: string): string {
   const trimmed = value.trim();

@@ -1,4 +1,4 @@
-import type { store } from "../../store/store";
+import type { store } from "../../store/store.js";
 
 let storeRef: typeof store | null = null;
 

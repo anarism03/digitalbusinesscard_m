@@ -1,5 +1,5 @@
-import { apiClient } from "../services/axios/axiosInstance";
-import { isTrustedAssetUrl } from "./url";
+import { apiClient } from "../services/axios/axiosInstance.js";
+import { isTrustedAssetUrl } from "./url.js";
 
 export async function fetchAssetBlob(path: string): Promise<Blob | undefined> {
   const url = new URL(path, window.location.origin).href;

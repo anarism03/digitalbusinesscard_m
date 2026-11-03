@@ -4,7 +4,7 @@ import {
   CORE_LINK_META,
   CORE_LINK_ORDER,
   LINK_TYPE_META,
-} from "../constants/linkTypes";
+} from "../constants/linkTypes.js";
 import type {
   ContactInfo,
   CoreLinkKey,
@@ -13,8 +13,8 @@ import type {
   LinkTypeMeta,
   ViewLinkGroup,
   ViewLinkRow,
-} from "../types";
-import { normalizeContactCardEntries } from "./contactCardFields";
+} from "../types/index.js";
+import { normalizeContactCardEntries } from "./contactCardFields.js";
 import {
   contactInfoMeta,
   customWebsiteHeadline,
@@ -22,21 +22,21 @@ import {
   resolveContactInfoType,
   resolveLinkType,
   tintFor,
-} from "./linkTypeResolution";
+} from "./linkTypeResolution.js";
 import {
   contactInfoRowKey,
   coreLinkRowKey,
   getDisabledLinkKeys,
   isContactInfoMetadata,
   socialAccountRowKey,
-} from "./linkVisibility";
+} from "./linkVisibility.js";
 import {
   buildWhatsAppLink,
   hasUnsafeUrlScheme,
   normalizePhone,
   urlToUsername,
   usernameToUrl,
-} from "./url";
+} from "./url.js";
 
 export const contactRowId = (contactType: string, index: number) =>
   `contact:${contactType}:${index}`;

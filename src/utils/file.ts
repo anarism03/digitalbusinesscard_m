@@ -1,4 +1,4 @@
-import { message } from "./feedback";
+import { message } from "./feedback.js";
 
 const IMAGE_MAX_INPUT_SIZE_BYTES = 8 * 1024 * 1024;
 const IMAGE_TARGET_SIZE_BYTES = 450 * 1024;

@@ -3,10 +3,10 @@ import {
   CONTACT_CARD_LABEL_PREFIX,
   CONTACT_CARD_PREFIX,
   DEFAULT_CONTACT_CARD_BUTTON_LABEL,
-} from "../constants/contactCard";
-import type { ContactCardFields, ContactInfo } from "../types";
-import type { ContactCardEntryKey } from "../types/contactCard";
-import { resolveContactInfoType } from "./linkTypeResolution";
+} from "../constants/contactCard.js";
+import type { ContactCardFields, ContactInfo } from "../types/index.js";
+import type { ContactCardEntryKey } from "../types/contactCard.js";
+import { resolveContactInfoType } from "./linkTypeResolution.js";
 
 export function normalizeContactCardButtonLabel(label?: string): string {
   const trimmed = label?.trim() ?? "";

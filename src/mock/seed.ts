@@ -1,4 +1,4 @@
-import type { Company, Employee, AuditLogEntry } from "../types";
+import type { Company, Employee, AuditLogEntry } from "../types/index.js";
 
 export const DEMO_PASSWORD = "Demo123!";
 export const DATABASE_KEY = "setclapp-demo-db-v1";

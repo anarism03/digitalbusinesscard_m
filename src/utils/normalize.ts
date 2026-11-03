@@ -1,5 +1,5 @@
-import { ROLE_MAP, ROLE_NAME_MAP } from "../constants/roles";
-import type { Role } from "../types";
+import { ROLE_MAP, ROLE_NAME_MAP } from "../constants/roles.js";
+import type { Role } from "../types/index.js";
 
 export function asRecord(value: unknown): Record<string, unknown> {
   return value && typeof value === "object" && !Array.isArray(value)

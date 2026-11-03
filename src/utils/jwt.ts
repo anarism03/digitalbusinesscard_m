@@ -1,5 +1,5 @@
-import type { User } from "../types";
-import { pickFirstLogin, toBoolean, toRole } from "./normalize";
+import type { User } from "../types/index.js";
+import { pickFirstLogin, toBoolean, toRole } from "./normalize.js";
 
 const SOAP_CLAIM = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
 const MICROSOFT_CLAIM =

@@ -13,7 +13,10 @@ export default {
           : "Unknown startup error";
       console.error("API startup failed:", detail);
       return Response.json(
-        { error: "API_STARTUP_FAILED", detail },
+        {
+          error: "API_STARTUP_FAILED",
+          message: "Server xidmətini işə salmaq alınmadı.",
+        },
         { status: 503, headers: { "Cache-Control": "no-store" } },
       );
     }

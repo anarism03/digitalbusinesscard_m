@@ -24,9 +24,9 @@ import type {
   LinkCategory,
   LinkType,
   LinkTypeMeta,
-} from "../types";
-import type { CoreLinkMeta } from "../types/linkMetadata";
-import { buildWhatsAppLink } from "../utils/url";
+} from "../types/index.js";
+import type { CoreLinkMeta } from "../types/linkMetadata.js";
+import { buildWhatsAppLink } from "../utils/url.js";
 
 export const FEATURED_TYPES: LinkType[] = ["contact-card", "website"];
 

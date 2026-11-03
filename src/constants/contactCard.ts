@@ -1,4 +1,4 @@
-import type { ContactCardFields } from "../types";
+import type { ContactCardFields } from "../types/index.js";
 export const CONTACT_CARD_PREFIX = "contact-card:";
 
 export const CONTACT_CARD_LABEL_PREFIX = "__setclapp_contact_card__:";

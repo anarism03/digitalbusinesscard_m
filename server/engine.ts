@@ -3,12 +3,12 @@ import {
   type AxiosAdapter,
   type InternalAxiosRequestConfig,
 } from "axios";
-import { nicknameSchema } from "../src/validators/nickname";
+import { nicknameSchema } from "../src/validators/nickname.js";
 import {
   DEMO_PASSWORD,
   type DemoAccount,
   type DemoDatabase,
-} from "../src/mock/seed";
+} from "../src/mock/seed.js";
 
 export interface DataRuntime {
   db: DemoDatabase;
@@ -541,7 +541,7 @@ export function createDataAdapter(runtime: DataRuntime): AxiosAdapter {
       return respond(page(db.audit, params));
     }
     if (lower.startsWith("/exportimport/")) {
-      const { handleExportImport } = await import("./exports");
+      const { handleExportImport } = await import("./exports.js");
       return respond(
         await handleExportImport({
           path: lower,
