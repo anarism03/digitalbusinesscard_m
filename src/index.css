@@ -510,6 +510,18 @@ textarea {
   font: inherit;
 }
 
+/* iOS zooms focused controls below 16px; include tablets in landscape. */
+@media (max-width: 1024px), (any-pointer: coarse) {
+  input,
+  textarea,
+  select,
+  [contenteditable=""],
+  [contenteditable="true"],
+  [contenteditable="plaintext-only"] {
+    font-size: 16px !important;
+  }
+}
+
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline: 3px solid color-mix(in srgb, var(--color-primary) 24%, transparent);
   outline-offset: 3px;
