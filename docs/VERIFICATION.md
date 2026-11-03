@@ -1,12 +1,14 @@
 # Ortaq Blob inteqrasiyası — 3 noyabr 2026
 
-- `npm test`: 4 inteqrasiya testi uğurludur. Ayrı API instansiyaları ortaq mətni, şəkli, ləqəbi və şirkət sazlamalarını görür.
+- `npm test`: 6 test uğurludur. Ayrı API instansiyaları ortaq mətni, şəkli, ləqəbi və şirkət sazlamalarını görür. Blob metadata/download versiyaları fərqlənəndə oxuma təkrar edilir, boş ETag rədd olunur.
 - ETag konflikti və təkrar əməliyyat, paralel ilk yaradılma, saxta token, başqa şirkətə giriş və yaddaş xidməti xətası yoxlanıb.
 - Şifrələr hash kimi saxlanır; şifrə dəyişikliyi əvvəlki sessiyanı etibarsız edir.
 - XLSX şablonu və multipart idxalı serverdə işləyir.
 - Chromium-da 390px mobil sessiyada profil adı və şəkil faylı dəyişdirilib, saxlanıb. Girişsiz ayrıca PC brauzer kontekstində dəyişmiş ad və dekod olunan şəkil təsdiqlənib.
 - `npm run lint`, frontend/server TypeScript yoxlamaları və production build uğurludur.
-- Canlı Blob bağlantısı deploydan sonra `/api/health` vasitəsilə yoxlanmalıdır. Bu bölmədəki iki brauzer yoxlaması təcrid olunmuş lokal test sürücüsü ilə aparılıb.
+- `npm run check:server`: Vercel kimi ayrı-ayrılıqda çevrilmiş 29 modul adi Node ilə uğurla açılır; bu yoxlama build-in bir hissəsidir.
+- Canlı `https://digitalbusinesscard-mocha.vercel.app/api/health`: HTTP 200 və `shared: true` təsdiqlənib.
+- Canlı saytda iki təcrid olunmuş brauzer konteksti ilə mətn və şəkil sınağı: mobil sessiyada PUT 200, girişsiz PC sessiyasında dəyişmiş mətn və dekod olunan şəkil təsdiqlənib. Sınaqdan sonra əvvəlki profil məlumatları bərpa edilib.
 
 ## Əvvəlki lokal demo yoxlamaları
 
