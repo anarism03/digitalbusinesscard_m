@@ -38,6 +38,7 @@ import {
 import { createLoginSchema, type LoginFormValues } from "../../validators/auth";
 
 import DemoAccess from "../../mock/DemoAccess";
+import "./LoginPage.css";
 
 const s = strings.auth;
 
@@ -158,7 +159,7 @@ export default function LoginPage() {
     !isSuperAdminMode && errorMsg ? /vöen|voen/i.test(errorMsg) : false;
 
   return (
-    <div style={styles.page}>
+    <div className="login-page" style={styles.page}>
       <div style={styles.wrap}>
         <div className="login-brand-card" style={styles.brandCard}>
           <div style={styles.logoBox}>

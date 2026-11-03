@@ -16,7 +16,7 @@ Mövcud React + TypeScript vizitkart layihəsinin Vercel üçün hazır mock ver
 
 ## Demo girişləri
 
-Giriş səhifəsində hər üç rola bir düymə ilə daxil olmaq mümkündür. Adi giriş forması da işləyir.
+Giriş səhifəsində ilkin olaraq bağlı olan “Hazır demo hesabları” kartını açıb hər üç rola bir düymə ilə daxil olmaq mümkündür. Sağdakı ox kartla birlikdə animasiya ilə dəyişir. Adi giriş forması da işləyir.
 
 | Rol | E-poçt | Şifrə | Şirkət VÖEN |
 | --- | --- | --- | --- |
