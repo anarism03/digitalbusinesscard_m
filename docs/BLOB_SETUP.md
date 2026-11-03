@@ -22,8 +22,6 @@ Bu versiya şirkətləri, profilləri, mətnləri, linkləri, statistikanı və 
 
 Əvvəlki `setclapp-demo-db-v1` lokal məlumatı avtomatik ortaq yaddaşa köçürülmür və silinmir. Köhnə cihaz nüsxələrinin yeni ortaq məlumatları təsadüfən əvəz etməməsi üçün avtomatik import edilmir. Əvvəlki lokal redaktələri ortaq versiyada yenidən yadda saxlamaq lazımdır.
 
-“Girişi təmizlə” yalnız həmin cihazın sessiyasını təmizləyir. Ortaq məlumatları sıfırlamır.
-
 ## Lokal iş və test
 
 Cloud bağlantısı ilə lokal iş üçün ayrı development Blob deposu qoşun və Vercel CLI ilə `.env.local` faylına development dəyişənlərini götürün. Sonra:

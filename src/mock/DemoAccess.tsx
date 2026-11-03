@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
-import { Alert, Button, Popconfirm, Select, Space } from "antd";
+import { Alert, Button, Select, Space } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { authService } from "../services/auth.service";
 import { setCredentials } from "../store/authSlice";
@@ -8,7 +8,6 @@ import { useAppDispatch } from "../store/hooks";
 import { decodeJwt } from "../utils/jwt";
 import { getApiErrorMessage } from "../utils/apiError";
 import { apiClient } from "../services/axios/axiosInstance";
-import { AUTH_STORAGE_KEY } from "../store/authSlice";
 import { companyId, DEMO_PASSWORD } from "./seed";
 import "./DemoAccess.css";
 
@@ -112,8 +111,6 @@ export default function DemoAccess() {
                 lineHeight: 1.6,
               }}
             >
-              Ortaq demo · Vercel Blob
-              <br />
               Şəxslər və şirkətlər uydurmadır. Dəyişikliklər bütün cihazlarda
               paylaşılır.
             </p>
@@ -147,37 +144,11 @@ export default function DemoAccess() {
             </Space>
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                gap: 8,
                 marginTop: 12,
                 fontSize: 12,
               }}
             >
               <Link to="/v/aysel-mammadova">Nümunə vizitkarta bax ↗</Link>
-              <Popconfirm
-                title="Bu cihazdakı giriş təmizlənsin?"
-                description="Ortaq məlumatlar və digər cihazlar dəyişməyəcək."
-                onConfirm={() => {
-                  localStorage.removeItem(AUTH_STORAGE_KEY);
-                  window.location.assign("/login");
-                }}
-                okText="Təmizlə"
-                cancelText="Ləğv et"
-              >
-                <button
-                  type="button"
-                  style={{
-                    border: 0,
-                    background: "none",
-                    color: "var(--color-text-secondary)",
-                    cursor: "pointer",
-                    padding: 0,
-                  }}
-                >
-                  Girişi təmizlə
-                </button>
-              </Popconfirm>
             </div>
             {error && (
               <Alert type="error" message={error} style={{ marginTop: 10 }} />

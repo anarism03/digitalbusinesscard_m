@@ -64,7 +64,7 @@ Bütün xidmət çağırışları `/api` vasitəsilə Vercel Functions-a göndə
 
 Telefonda yadda saxlanan redaktə PC-də eyni profilə baxanda görünür. Səhifəni yeniləmək və ya başqa tabdan qayıtmaq məlumatları yenidən oxuyur. Lokal yaddaş əsas məlumat bazası kimi istifadə edilmir. Blob bağlantısı işləmirsə saxta lokal uğur əvəzinə API xətası göstərilir.
 
-İlk sorğuda ilkin demo məlumatları bir dəfə yaradılır; sonrakı deploy-lar onu sıfırlamır. Əvvəlki lokal demo redaktələri avtomatik köçürülmür və silinmir. Yeni versiyada girişə yenidən daxil olmaq lazımdır. “Girişi təmizlə” yalnız həmin cihazın sessiyasını təmizləyir.
+İlk sorğuda ilkin demo məlumatları bir dəfə yaradılır; sonrakı deploy-lar onu sıfırlamır. Əvvəlki lokal demo redaktələri avtomatik köçürülmür və silinmir. Yeni versiyada girişə yenidən daxil olmaq lazımdır.
 
 Lokal iş üçün Blob-un development bağlantısını `.env.local` vasitəsilə qurun. Ətraflı təlimat və yalnız test üçün yaddaş rejimi: [docs/BLOB_SETUP.md](docs/BLOB_SETUP.md).
 
